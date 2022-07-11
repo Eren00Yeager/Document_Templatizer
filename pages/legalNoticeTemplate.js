@@ -8,31 +8,31 @@ import LegalNoticeForm from '../components/legalNoticeForm'
 
 const legalNoticeTemplate = () => {
     const [date,setDate]=useState({
-            'DD':'',
-            'MM':'',
-            'YY':''
+            'DD':'__',
+            'MM':'__',
+            'YY':'__'
         })
 
     const [lawyer,setLawyer]=useState({
-        'id':'',
-        'name':'',
-        'address':'',
-        'pin':'',
-        'phone':'',
-        'mobile':''
+        'id':'______',
+        'name':'______',
+        'address':'______',
+        'pin':'______',
+        'phone':'______',
+        'mobile':'______'
     })
 
     const [client,setClient]=useState({
-        'name':'',
-        'address':''
+        'name':'______',
+        'address':'______'
     })
 
     const [recipient,setRecipient]=useState({
-        'name':'',
-        'address':'',
-        'city':'',
-        'state':'',
-        'pin':''
+        'name':'______',
+        'address':'______',
+        'city':'______',
+        'state':'______',
+        'pin':'______'
     })
 
     const [references,setReferences]=useState([])
@@ -51,11 +51,10 @@ return(
                 <div id='html2pdfform' className={styles.form}>
                     <Container>
                         <Row>
-                            <h2><center>{lawyer['name']}</center></h2>
-                            <h3><center>ADVOCATE</center></h3>
-                            <h4>Address : {lawyer['address']}</h4>
-                            <h4>Pin : {lawyer['pin']}</h4>
-                            <h4>Telephone : {lawyer['phone']} &emsp; Mobile : {lawyer['mobile']}</h4>
+                            <span><center>{lawyer['name']}</center></span>
+                            <span><center>ADVOCATE</center></span>
+                            <span>Address : {lawyer['address']} , {lawyer['pin']}</span>
+                            <span>Telephone : {lawyer['phone']} &emsp; Mobile : {lawyer['mobile']}</span>
                             <hr/>    
                         </Row>
                         <Row>
@@ -71,7 +70,7 @@ return(
                         <Row>
                             <Col xs={4}>
                                 <span >To,</span><br/>
-                                <strong>Grievance Officer</strong>
+                                <strong>Grievance Officer</strong><br/>
                                 <em>
                                     {recipient['name']}
                                 </em><br/>
@@ -82,7 +81,7 @@ return(
                                     {recipient['city']}, {recipient['state']}
                                 </em><br/>
                                 <em>
-                                    Pin:{recipient['pin']}
+                                    Pin : {recipient['pin']}
                                 </em>
                             </Col>
                         </Row>
@@ -117,7 +116,9 @@ return(
                             </strong>
                             <span style={{'paddingLeft':'3%'}}>
                                 <ol>
-                                    {references.map((ref,id)=>{
+                                    {references.length==0? 
+                                    <>________________<br/>________________</>:
+                                    references.map((ref,id)=>{
                                         return(
                                             <li key={id}>{ref}</li>
                                         );
@@ -138,7 +139,10 @@ return(
                         <Row>
                             <span style={{'paddingLeft':'3%'}}>
                                 <ol>
-                                    {statements.map((statement,id)=>{
+                                    <li>That my Client {client['name']}, a resident of {client['address']}</li>
+                                    {statements.length==0? 
+                                    <>________________<br/>________________</>:
+                                    statements.map((statement,id)=>{
                                         return(
                                             <li key={id}>{statement}</li>
                                         );

@@ -59,7 +59,7 @@ const LegalNoticeForm=(props)=>{
                             <Form.Label>Lawyer Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter Name of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
                                 ...prevState,
-                                'name':e.target.value
+                                'name':e.target.value.toUpperCase()
                             }))}/>
                             {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
