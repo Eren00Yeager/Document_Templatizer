@@ -1,0 +1,7 @@
+
+.form{
+/* width of a4 is 595px and height of a4 is 842px */
+    border: saddlebrown solid 3px;
+    padding: 10px;
+    width: 595px;
+}
