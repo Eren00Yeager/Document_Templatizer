@@ -7,7 +7,7 @@ import LegalNoticeForm from '../components/legalNoticeForm'
 import LegalNoticeHtml from '../components/legalNoticeHtml'
 
 
-const legalNoticeTemplate = () => {
+const LegalNoticeTemplate = () => {
     const [date,setDate]=useState('______')
 
     const [lawyer,setLawyer]=useState({
@@ -56,4 +56,4 @@ return(
     
  }
 
-export default legalNoticeTemplate;
+export default LegalNoticeTemplate;

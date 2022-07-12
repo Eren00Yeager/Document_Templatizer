@@ -5,6 +5,7 @@
 }
 
 .formouter{
+    margin: 3vh 0 0 3vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -14,13 +15,14 @@
     background-color: lightgray;
     max-height: 90vh;
     overflow-y: scroll;
+    overflow-x: visible;
 }
 
 .formcol{
     padding: 3vh;
     overflow-y: scroll;
+    scroll-behavior: smooth!important;
     height: 90vh!important;
-    border: black solid 2px;
 }
 
 .formcol{
@@ -30,4 +32,9 @@
     padding: 5vh;
     height: 100vh;
     overflow-y: hidden;
+    background: #2AF598;
+}
+
+.accordion{
+    margin: 1vh;
 }

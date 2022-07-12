@@ -1,6 +1,6 @@
 import styles from '../styles/legalnotice.module.css'
-import { Col,Row,Form,Button,Accordion } from 'react-bootstrap'
-import { useState } from 'react'
+import { Col,Row,Form,Button,Accordion, AccordionContext ,useAccordionButton} from 'react-bootstrap'
+import { useContext, useState } from 'react'
 import {htmltopdf} from './utils/htmltopdf'
 
 const LegalNoticeForm=(props)=>{
@@ -8,19 +8,46 @@ const LegalNoticeForm=(props)=>{
     const [dummyref,setDummyref]=useState('')
     const [dummystatement,setDummystatement]=useState('')
 
+
+    const onclickAccordion=(id)=>{
+        document.querySelectorAll('.lnformrows').forEach((row)=>{
+            if(`#${row.id}`!=id){row.style=null}
+        }) 
+        const element=document.querySelector(id)
+
+        element.scrollIntoView({ 
+            behavior: 'smooth' 
+          });
+
+        
+        if(!element.style.backgroundColor){
+            element.style.backgroundColor='rgba(255, 255, 255, 0.541)'
+            element.style.borderRadius='10px'
+            element.style.scale='1.05'
+            element.style.opacity = 2;
+        }else{
+            element.style=null
+        }
+
+    }
     return(
         <Form>
             <Accordion flush>
-                <Form.Group className="mb-3" controlId="Date">
-                    <Form.Label>Date</Form.Label>
-                    <Form.Control type="date" placeholder="Enter Mobile of Lawyer" onChange={(e)=>props.setDate(e.target.value)}/>
+                <Form.Group className={styles.accordion} onFocus={()=>onclickAccordion('#lndate')}>
+                    <Row>
+                    <Col xs={{span:8,offset:4}} md={{span:3,offset:9}}>
+                        <Form.Control type="date" placeholder="Enter Mobile of Lawyer"  style={{'textAlign':'center'}} onChange={(e)=>props.setDate(e.target.value)}/>
+                    </Col>
+                    </Row>
+                    
+                    
                 </Form.Group>
                 
 
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>Lawyer Name and Address</Accordion.Header>
+                <Accordion.Item className={styles.accordion} eventKey="1">
+                    <Accordion.Header onClick={()=>onclickAccordion('#lnlawyer')}>Lawyer Name and Address</Accordion.Header>
                     <Accordion.Body>
-                        <Form.Group className="mb-3" controlId="LawyerName">
+                        <Form.Group className="mb-3">
                             <Form.Label>Lawyer Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter Name of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
                                 ...prevState,
@@ -30,35 +57,35 @@ const LegalNoticeForm=(props)=>{
                             We'll never share your email with anyone else.
                             </Form.Text> */}
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerAddress">
+                        <Form.Group className="mb-3">
                             <Form.Label>Lawyer ID</Form.Label>
                             <Form.Control type="text" placeholder="Enter ID of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
                                 ...prevState,
                                 'id':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerAddress">
+                        <Form.Group className="mb-3">
                             <Form.Label>Lawyer Address</Form.Label>
                             <Form.Control type="textarea" placeholder="Enter Address of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
                                 ...prevState,
                                 'address':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerPin">
+                        <Form.Group className="mb-3">
                             <Form.Label>Lawyer Pin</Form.Label>
                             <Form.Control type="text" placeholder="Enter Pin of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
                                 ...prevState,
                                 'pin':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerPhone">
+                        <Form.Group className="mb-3">
                             <Form.Label>Lawyer Phone</Form.Label>
                             <Form.Control type="text" placeholder="Enter Phone of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
                                 ...prevState,
                                 'phone':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerMobile">
+                        <Form.Group className="mb-3">
                             <Form.Label>LawyerMobile</Form.Label>
                             <Form.Control type="text" placeholder="Enter Mobile of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
                                 ...prevState,
@@ -68,12 +95,12 @@ const LegalNoticeForm=(props)=>{
                     </Accordion.Body>
                 </Accordion.Item>
 
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header>Recipient Name and Address</Accordion.Header>
+                <Accordion.Item className={styles.accordion} eventKey="2">
+                    <Accordion.Header onClick={()=>onclickAccordion('#lnrecipient')}>Recipient Name and Address</Accordion.Header>
                     <Accordion.Body>
-                        <Form.Group className="mb-3" controlId="LawyerName">
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient Company Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Name of Company" onChange={(e)=>props.setRecipient(prevState=>({
+                            <Form.Control type="text" placeholder="Enter Name of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'name':e.target.value
                             }))}/>
@@ -81,9 +108,9 @@ const LegalNoticeForm=(props)=>{
                             We'll never share your email with anyone else.
                             </Form.Text> */}
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerAddress">
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient Address</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address of Lawyer" onChange={(e)=>props.setRecipient(prevState=>({
+                            <Form.Control type="textarea" placeholder="Enter Address of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'address':e.target.value
                             }))}/>
@@ -104,7 +131,7 @@ const LegalNoticeForm=(props)=>{
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="LawyerPin">
                             <Form.Label>Recipient Pin</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Pin of Lawyer" onChange={(e)=>props.setRecipient(prevState=>({
+                            <Form.Control type="text" placeholder="Enter Pin of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'pin':e.target.value
                             }))}/>
@@ -112,12 +139,12 @@ const LegalNoticeForm=(props)=>{
                     </Accordion.Body>
                 </Accordion.Item>
 
-                <Accordion.Item eventKey="3">
-                    <Accordion.Header>Client Name and Address</Accordion.Header>
+                <Accordion.Item className={styles.accordion} eventKey="3">
+                    <Accordion.Header onClick={()=>onclickAccordion('#lnclient')}>Client Name and Address</Accordion.Header>
                     <Accordion.Body>
-                        <Form.Group className="mb-3" controlId="LawyerName">
+                        <Form.Group className="mb-3">
                             <Form.Label>Client Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Name of Company" onChange={(e)=>props.setClient(prevState=>({
+                            <Form.Control type="text" placeholder="Enter Name of Client" onChange={(e)=>props.setClient(prevState=>({
                                 ...prevState,
                                 'name':e.target.value
                             }))}/>
@@ -125,9 +152,9 @@ const LegalNoticeForm=(props)=>{
                             We'll never share your email with anyone else.
                             </Form.Text> */}
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerAddress">
+                        <Form.Group className="mb-3">
                             <Form.Label>Client Address</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address of Lawyer" onChange={(e)=>props.setClient(prevState=>({
+                            <Form.Control type="textarea" placeholder="Enter Address of Client" onChange={(e)=>props.setClient(prevState=>({
                                 ...prevState,
                                 'address':e.target.value
                             }))}/>
@@ -135,10 +162,10 @@ const LegalNoticeForm=(props)=>{
                     </Accordion.Body>
                 </Accordion.Item>
 
-                <Accordion.Item eventKey="4">
-                    <Accordion.Header>References</Accordion.Header>
+                <Accordion.Item className={styles.accordion} eventKey="4">
+                    <Accordion.Header onClick={()=>onclickAccordion('#lnreferences')}>References</Accordion.Header>
                     <Accordion.Body>
-                        <Form.Group className="mb-3" controlId="LawyerName">
+                        <Form.Group className="mb-3">
                             <Form.Label>Add references here</Form.Label>
                             <Row>
                                 <Col xs={10}>
@@ -173,10 +200,10 @@ const LegalNoticeForm=(props)=>{
                     </Accordion.Body>
                 </Accordion.Item>
 
-                <Accordion.Item eventKey="5">
-                    <Accordion.Header>Statements</Accordion.Header>
+                <Accordion.Item className={styles.accordion} eventKey="5">
+                    <Accordion.Header onClick={()=>onclickAccordion('#lnstatements')}>Statements</Accordion.Header>
                     <Accordion.Body>
-                        <Form.Group className="mb-3" controlId="LawyerName">
+                        <Form.Group className="mb-3">
                             <Form.Label>Add statements here</Form.Label>
                             <Row>
                                 <Col xs={10}>
@@ -198,7 +225,7 @@ const LegalNoticeForm=(props)=>{
                             </Row>
                             <Row>
                                 <span style={{'padding':'3% 0 0 3%'}}>
-                                    <ol>
+                                    <ol start='2'>
                                         {props.statements.map((ref,id)=>{
                                             return(
                                                 <li key={id}>{ref}</li>
