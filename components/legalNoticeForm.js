@@ -11,32 +11,11 @@ const LegalNoticeForm=(props)=>{
     return(
         <Form>
             <Accordion flush>
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>Date and Time</Accordion.Header>
-                    <Accordion.Body>
-                        <Form.Group className="mb-3" controlId="LawyerMobile">
-                            <Form.Label>DD</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Mobile of Lawyer" onChange={(e)=>props.setDate(prevState=>({
-                                ...prevState,
-                                'DD':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerMobile">
-                            <Form.Label>MM</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Mobile of Lawyer" onChange={(e)=>props.setDate(prevState=>({
-                                ...prevState,
-                                'MM':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerMobile">
-                            <Form.Label>YY</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Mobile of Lawyer" onChange={(e)=>props.setDate(prevState=>({
-                                ...prevState,
-                                'YY':e.target.value
-                            }))}/>
-                        </Form.Group>
-                    </Accordion.Body>
-                </Accordion.Item>
+                <Form.Group className="mb-3" controlId="Date">
+                    <Form.Label>Date</Form.Label>
+                    <Form.Control type="date" placeholder="Enter Mobile of Lawyer" onChange={(e)=>props.setDate(e.target.value)}/>
+                </Form.Group>
+                
 
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Lawyer Name and Address</Accordion.Header>
@@ -166,14 +145,14 @@ const LegalNoticeForm=(props)=>{
                                     <Form.Control type="text" value={dummyref} onChange={(e)=>setDummyref(e.target.value)}/>    
                                 </Col>
                                 <Col xs={2}>
-                                    <Button type='primary' onClick={(e)=>{
+                                    <Button variant="info" onClick={(e)=>{
                                         e.preventDefault();
                                         if(dummyref){
                                             props.setReferences(prevState=>([...prevState,dummyref]));
                                             setDummyref('')
                                         } 
                                     }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" className="bi bi-plus-lg" viewBox="0 0 16 16">
                                             <path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                         </svg>    
                                     </Button>   
@@ -204,14 +183,14 @@ const LegalNoticeForm=(props)=>{
                                     <Form.Control type="text" value={dummystatement} onChange={(e)=>setDummystatement(e.target.value)}/>    
                                 </Col>
                                 <Col xs={2}>
-                                    <Button type='primary' onClick={(e)=>{
+                                    <Button variant="info" onClick={(e)=>{
                                         e.preventDefault();
                                         if(dummystatement){
                                             props.setStatements(prevState=>([...prevState,dummystatement]));
                                             setDummystatement('')
                                         } 
                                     }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" className="bi bi-plus-lg" viewBox="0 0 16 16">
                                             <path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                         </svg>    
                                     </Button>   
@@ -236,7 +215,7 @@ const LegalNoticeForm=(props)=>{
             
             <br/>
             <center>
-               <Button variant="primary" onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
+               <Button variant="success" size='lg' onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
                     Generate PDF
                 </Button>  
             </center>

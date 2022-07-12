@@ -16,17 +16,18 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                         <Row>
                             <Col style={{'textAlign':'right'}}>
                                 <p>
-                                <span >Date:</span>
+                                <span >Date : </span>
                                 <em>
-                                    <span >{date['DD']}-{date['MM']}-{date['YY']}</span>
+                                    <span >{date}</span>
                                 </em>
                                 </p>
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={4}>
+                            <Col xs={5}>
                                 <span >To,</span><br/>
                                 <strong>Grievance Officer</strong><br/>
+                                <hr/>
                                 <em>
                                     {recipient['name']}
                                 </em><br/>
@@ -42,7 +43,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                             </Col>
                         </Row>
                         <Row style={{'textAlign':'right'}}>
-                            <Col xs={{span:4,offset:8}}>
+                            <Col xs={{span:5,offset:7}}>
                                 <p>
                                     <strong>My Client:</strong><br/>
                                     <strong>
@@ -112,15 +113,9 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                             </p>
                         </Row>
                         <Row style={{'textAlign':'left'}}>
-                            <p>
                             <strong>{lawyer['name']}</strong>
-                            </p>
-                            <p>
                             <span >(Advocate)</span>
-                            </p>
-                            <p>
                             <span >{lawyer['id']}</span>
-                            </p>
                         </Row>
                     </Container>
                 </div> 

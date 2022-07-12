@@ -8,11 +8,7 @@ import LegalNoticeHtml from '../components/legalNoticeHtml'
 
 
 const legalNoticeTemplate = () => {
-    const [date,setDate]=useState({
-            'DD':'__',
-            'MM':'__',
-            'YY':'__'
-        })
+    const [date,setDate]=useState('______')
 
     const [lawyer,setLawyer]=useState({
         'id':'______',
@@ -42,13 +38,15 @@ const legalNoticeTemplate = () => {
 
 return(
     <>
-    <Row style={{'padding':'3%'}}>
-        <Col md={7}>
-            <LegalNoticeForm setLawyer={setLawyer} setDate={setDate} setRecipient={setRecipient} setClient={setClient} 
+    <Row className={styles.legalnoticerow}>
+        <Col md={7} className={styles.formcol}>
+            <LegalNoticeForm 
+            setLawyer={setLawyer} setDate={setDate} setRecipient={setRecipient} setClient={setClient} 
             references={references} setReferences={setReferences} statements={statements} setStatements={setStatements}/>
         </Col>
-        <Col md={5}>
-            <LegalNoticeHtml lawyer={lawyer} date={date} client={client} recipient={recipient} references={references} statements={statements}/>
+        <Col md={5} className={styles.htmlcol}>
+            <LegalNoticeHtml lawyer={lawyer} date={date} client={client} 
+            recipient={recipient} references={references} statements={statements}/>
         </Col>
     </Row>
         
@@ -58,4 +56,4 @@ return(
     
  }
 
- export default legalNoticeTemplate;
+export default legalNoticeTemplate;

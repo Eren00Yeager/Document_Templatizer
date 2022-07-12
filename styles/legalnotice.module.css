@@ -12,4 +12,22 @@
     justify-content: center;
     border: gray solid 3px;
     background-color: lightgray;
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+.formcol{
+    padding: 3vh;
+    overflow-y: scroll;
+    height: 90vh!important;
+    border: black solid 2px;
+}
+
+.formcol{
+    height: 100vh;
+}
+.legalnoticerow{
+    padding: 5vh;
+    height: 100vh;
+    overflow-y: hidden;
 }
