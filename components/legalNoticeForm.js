@@ -1,7 +1,7 @@
 import styles from '../styles/legalnotice.module.css'
 import { Col,Row,Form,Button,Accordion, AccordionContext ,useAccordionButton} from 'react-bootstrap'
 import { useContext, useState } from 'react'
-import {htmltopdf} from './utils/htmltopdf'
+import {htmltopdf,htmltodocx} from './utils/htmltopdf'
 
 const LegalNoticeForm=(props)=>{
 
@@ -53,9 +53,6 @@ const LegalNoticeForm=(props)=>{
                                 ...prevState,
                                 'name':e.target.value.toUpperCase()
                             }))}/>
-                            {/* <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text> */}
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Lawyer ID</Form.Label>
@@ -104,9 +101,6 @@ const LegalNoticeForm=(props)=>{
                                 ...prevState,
                                 'name':e.target.value
                             }))}/>
-                            {/* <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text> */}
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Recipient Address</Form.Label>
@@ -148,9 +142,6 @@ const LegalNoticeForm=(props)=>{
                                 ...prevState,
                                 'name':e.target.value
                             }))}/>
-                            {/* <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text> */}
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Client Address</Form.Label>
@@ -242,9 +233,12 @@ const LegalNoticeForm=(props)=>{
             
             <br/>
             <center>
-               <Button variant="success" size='lg' onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
+               <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
                     Generate PDF
-                </Button>  
+                </Button>&emsp;
+                <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltodocx(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
+                    Generate DOCX
+                </Button> 
             </center>
                    
             

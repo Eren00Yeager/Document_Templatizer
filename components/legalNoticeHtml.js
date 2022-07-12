@@ -10,10 +10,10 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
             <div id='legalnoticeform' className={styles.form}>
                 <Container>
                     <Row className='lnformrows' id='lnlawyer'>
-                        <span><center>{lawyer['name']}</center></span>
-                        <span><center>ADVOCATE</center></span>
-                        <span>Address : {lawyer['address']} , {lawyer['pin']}</span>
-                        <span>Telephone : {lawyer['phone']} &emsp; Mobile : {lawyer['mobile']}</span>
+                        <center>{lawyer['name']}</center>
+                        <center>ADVOCATE</center>
+                        &emsp;Address : {lawyer['address']} , {lawyer['pin']}<br/>
+                        &emsp;Telephone : {lawyer['phone']} &emsp; Mobile : {lawyer['mobile']}
                         <hr/>    
                     </Row>
                     <Row className='lnformrows' id='lndate'>
@@ -46,22 +46,20 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                         </Col>
                     </Row>
                     <Row className='lnformrows' style={{'textAlign':'right'}} id='lnclient'>
-                        <Col xs={{span:5,offset:7}}>
-                            <p>
-                                <strong>My Client:</strong><br/>
-                                <strong>
-                                    <em>Mr.{client['name']} ,</em>
-                                </strong><br/>
+                            <strong>My Client:</strong><br/>
+                            <strong>
+                                <em>Mr.{client['name']} ,</em>
+                            </strong><br/>
+                        
+                            <Col xs={{span:5,offset:7}}> 
                                 <em>
                                     <span >R/o – {client['address']}</span>
-                                </em>    
-                            </p>
-                            
-                        </Col>
+                                </em> 
+                            </Col>
                     </Row>
                     <Row style={{'textAlign':'left'}}>
                         <p>
-                        <strong>SUB:&nbsp;</strong>
+                        <strong>SUB : </strong>
                         <em>
                             <span >Legal</span>
                         </em> 
@@ -112,13 +110,13 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                     </Row>
                     <Row>
                         <p>
-                        <span >Take further notice that in case of your failure to discharge your obligations and commitments within the time specified, my Client shall be further constrained to lodge a consumer complaint against You for deficiency of services and wrongful loss caused to my Client and also institute such other proceedings and actions in law as advised.&nbsp;</span>
+                        <span >Take further notice that in case of your failure to discharge your obligations and commitments within the time specified, my Client shall be further constrained to lodge a consumer complaint against You for deficiency of services and wrongful loss caused to my Client and also institute such other proceedings and actions in law as advised . </span>
                         </p>
                     </Row>
                     <Row style={{'textAlign':'left'}}>
-                        <strong>{lawyer['name']}</strong>
-                        <span >(Advocate)</span>
-                        <span >{lawyer['id']}</span>
+                        <strong>{lawyer['name']}</strong><br/>
+                        (Advocate)<br/>
+                        {lawyer['id']}
                     </Row>
                 </Container>
             </div> 
