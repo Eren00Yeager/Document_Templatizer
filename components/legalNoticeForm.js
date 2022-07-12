@@ -1,7 +1,7 @@
-import styles from '../styles/generatePDF.module.css'
+import styles from '../styles/legalnotice.module.css'
 import { Col,Row,Form,Button,Accordion } from 'react-bootstrap'
 import { useState } from 'react'
-import {htmltopdf} from './htmltopdf'
+import {htmltopdf} from './utils/htmltopdf'
 
 const LegalNoticeForm=(props)=>{
 
