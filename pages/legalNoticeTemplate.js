@@ -48,7 +48,7 @@ return(
         </Col>
         <Col md={5}>
             <div className={styles.formouter}>
-                <div id='html2pdfform' className={styles.form}>
+                <div id='legalnoticeform' className={styles.form}>
                     <Container>
                         <Row>
                             <span><center>{lawyer['name']}</center></span>

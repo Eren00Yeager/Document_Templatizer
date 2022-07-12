@@ -1,20 +1,7 @@
 import styles from '../styles/generatePDF.module.css'
 import { Col,Row,Form,Button,Accordion } from 'react-bootstrap'
-import jsPDF from 'jspdf'
 import { useState } from 'react'
-
-
-const htmltopdf=()=>{
-    var doc=new jsPDF('p','pt','a4')
-    doc.html(document.querySelector('#html2pdfform'),{
-        margin:[40,1,40,1],
-        callback:function(pdf){
-            var pageCount=doc.internal.getNumberOfPages();
-            pdf.deletePage(pageCount+1);
-            pdf.save('Legal_Notice.pdf');
-        }
-    })
-}
+import {htmltopdf} from './htmltopdf'
 
 const LegalNoticeForm=(props)=>{
 
@@ -24,7 +11,6 @@ const LegalNoticeForm=(props)=>{
     return(
         <Form>
             <Accordion flush>
-                
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Date and Time</Accordion.Header>
                     <Accordion.Body>
@@ -250,7 +236,7 @@ const LegalNoticeForm=(props)=>{
             
             <br/>
             <center>
-               <Button variant="primary" onClick={htmltopdf}>
+               <Button variant="primary" onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
                     Generate PDF
                 </Button>  
             </center>
