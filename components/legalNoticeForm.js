@@ -21,7 +21,7 @@ const LegalNoticeForm=(props)=>{
 
         
         if(!element.style.backgroundColor){
-            element.style.backgroundColor='rgba(255, 255, 255, 0.541)'
+            element.style.backgroundColor='lightgrey'
             element.style.borderRadius='10px'
             element.style.scale='1.05'
             element.style.opacity = 2;

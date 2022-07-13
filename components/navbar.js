@@ -6,13 +6,13 @@ import Help from '../components/modal';
 function ColorSchemesExample() {
   return (
     <>
-      <Navbar style={{'background':'linear-gradient(#02fa8a,#2AF598)'}}>
+      <Navbar expand="lg" style={{'background':'linear-gradient(#02fa8a,#2AF598)','height':'5vh'}}>
         <Container>
-          <Navbar.Brand style={{'color': 'white', 'fontWeight':'bold', 'fontSize':'30px'}} href="#home">LegalNoticeTemplate</Navbar.Brand>
+          <Navbar.Brand style={{'color': 'white', 'fontWeight':'bold', 'fontSize':'30px'}} href="/">LegalNoticeTemplate</Navbar.Brand>
             {/* <Nav className="me-auto">
               <Nav.Link style={{'color': 'white', 'fontSize':'20px'}} href="#home">Home</Nav.Link>
             </Nav> */}
-          <Navbar.Text>
+          <Navbar.Text className='d-none d-sm-block'>
             <Help />
           </Navbar.Text>
         </Container>
