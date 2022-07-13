@@ -39,8 +39,6 @@ const LegalNoticeForm=(props)=>{
                         <Form.Control type="date" placeholder="Enter Mobile of Lawyer"  style={{'textAlign':'center'}} onChange={(e)=>props.setDate(e.target.value)}/>
                     </Col>
                     </Row>
-                    
-                    
                 </Form.Group>
                 
 
@@ -194,8 +192,8 @@ const LegalNoticeForm=(props)=>{
                         <Form.Group className="mb-3">
                             <Form.Label>Add references here</Form.Label>
                             <Row>
-                                <Col xs={10}>
-                                    <Form.Control type="text" value={dummyref} onChange={(e)=>setDummyref(e.target.value)}/>    
+                                <Col xs={9}>
+                                    <Form.Control rows={3} as="textarea"  value={dummyref} onChange={(e)=>setDummyref(e.target.value)}/>    
                                 </Col>
                                 <Col xs={2}>
                                     <Button variant="info" onClick={(e)=>{
@@ -212,7 +210,7 @@ const LegalNoticeForm=(props)=>{
                                 </Col>
                             </Row>
                             <Row>
-                                <span style={{'padding':'3% 0 0 3% '}}>
+                                <span style={{'padding':'3% 3% 0 3%','color':'black'}}>
                                     <ol>
                                         {props.references.map((ref,id)=>{
                                             return(
@@ -232,8 +230,8 @@ const LegalNoticeForm=(props)=>{
                         <Form.Group className="mb-3">
                             <Form.Label>Add statements here</Form.Label>
                             <Row>
-                                <Col xs={10}>
-                                    <Form.Control type="text" value={dummystatement} onChange={(e)=>setDummystatement(e.target.value)}/>    
+                                <Col xs={9}>
+                                    <Form.Control rows={3} as="textarea"  value={dummystatement} onChange={(e)=>setDummystatement(e.target.value)}/>    
                                 </Col>
                                 <Col xs={2}>
                                     <Button variant="info" onClick={(e)=>{
@@ -250,7 +248,7 @@ const LegalNoticeForm=(props)=>{
                                 </Col>
                             </Row>
                             <Row>
-                                <span style={{'padding':'3% 0 0 3%'}}>
+                                <span style={{'padding':'3% 3% 0 3%','color':'black'}}>
                                     <ol start='2'>
                                         {props.statements.map((ref,id)=>{
                                             return(
@@ -268,10 +266,10 @@ const LegalNoticeForm=(props)=>{
             
             <br/>
             <center>
-               <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
+               <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
                     Generate PDF
                 </Button>&emsp;
-                <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltodocx(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
+                <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltodocx(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
                     Generate DOCX
                 </Button> 
             </center>
