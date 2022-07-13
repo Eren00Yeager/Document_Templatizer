@@ -21,7 +21,7 @@ const LegalNoticeForm=(props)=>{
 
         
         if(!element.style.backgroundColor){
-            element.style.backgroundColor='rgba(255, 255, 255, 0.541)'
+            element.style.backgroundColor='lightgrey'
             element.style.borderRadius='10px'
             element.style.scale='1.05'
             element.style.opacity = 2;
@@ -39,8 +39,6 @@ const LegalNoticeForm=(props)=>{
                         <Form.Control type="date" placeholder="Enter Mobile of Lawyer"  style={{'textAlign':'center'}} onChange={(e)=>props.setDate(e.target.value)}/>
                     </Col>
                     </Row>
-                    
-                    
                 </Form.Group>
                 
 
@@ -96,34 +94,41 @@ const LegalNoticeForm=(props)=>{
                     <Accordion.Header onClick={()=>onclickAccordion('#lnrecipient')}>Recipient Name and Address</Accordion.Header>
                     <Accordion.Body>
                         <Form.Group className="mb-3">
-                            <Form.Label>Recipient Company Name</Form.Label>
+                            <Form.Label>Recipient Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter Name of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'name':e.target.value
                             }))}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Recipient Address</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
+                            <Form.Label>Recipient Address Line 1</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 1 of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
-                                'address':e.target.value
+                                'address1':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerPhone">
+                        <Form.Group className="mb-3">
+                            <Form.Label>Recipient Address Line 2</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 2 of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
+                                ...prevState,
+                                'address2':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient City</Form.Label>
                             <Form.Control type="text" placeholder="Enter City of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'city':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerMobile">
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient State</Form.Label>
                             <Form.Control type="text" placeholder="Enter State of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'state':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerPin">
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient Pin</Form.Label>
                             <Form.Control type="text" placeholder="Enter Pin of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
@@ -144,10 +149,38 @@ const LegalNoticeForm=(props)=>{
                             }))}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Client Address</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address of Client" onChange={(e)=>props.setClient(prevState=>({
+                            <Form.Label>Client Address Line 1</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 1 of Client" onChange={(e)=>props.setClient(prevState=>({
                                 ...prevState,
-                                'address':e.target.value
+                                'address1':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client Address Line 2</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 2 of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'address2':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client City</Form.Label>
+                            <Form.Control type="text" placeholder="Enter City of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'city':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client State</Form.Label>
+                            <Form.Control type="text" placeholder="Enter State of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'state':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client Pin</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Pin of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'pin':e.target.value
                             }))}/>
                         </Form.Group>
                     </Accordion.Body>
@@ -159,8 +192,8 @@ const LegalNoticeForm=(props)=>{
                         <Form.Group className="mb-3">
                             <Form.Label>Add references here</Form.Label>
                             <Row>
-                                <Col xs={10}>
-                                    <Form.Control type="text" value={dummyref} onChange={(e)=>setDummyref(e.target.value)}/>    
+                                <Col xs={9}>
+                                    <Form.Control rows={3} as="textarea"  value={dummyref} onChange={(e)=>setDummyref(e.target.value)}/>    
                                 </Col>
                                 <Col xs={2}>
                                     <Button variant="info" onClick={(e)=>{
@@ -177,7 +210,7 @@ const LegalNoticeForm=(props)=>{
                                 </Col>
                             </Row>
                             <Row>
-                                <span style={{'padding':'3% 0 0 3% '}}>
+                                <span style={{'padding':'3% 3% 0 3%','color':'black'}}>
                                     <ol>
                                         {props.references.map((ref,id)=>{
                                             return(
@@ -197,8 +230,8 @@ const LegalNoticeForm=(props)=>{
                         <Form.Group className="mb-3">
                             <Form.Label>Add statements here</Form.Label>
                             <Row>
-                                <Col xs={10}>
-                                    <Form.Control type="text" value={dummystatement} onChange={(e)=>setDummystatement(e.target.value)}/>    
+                                <Col xs={9}>
+                                    <Form.Control rows={3} as="textarea"  value={dummystatement} onChange={(e)=>setDummystatement(e.target.value)}/>    
                                 </Col>
                                 <Col xs={2}>
                                     <Button variant="info" onClick={(e)=>{
@@ -215,7 +248,7 @@ const LegalNoticeForm=(props)=>{
                                 </Col>
                             </Row>
                             <Row>
-                                <span style={{'padding':'3% 0 0 3%'}}>
+                                <span style={{'padding':'3% 3% 0 3%','color':'black'}}>
                                     <ol start='2'>
                                         {props.statements.map((ref,id)=>{
                                             return(
@@ -233,10 +266,10 @@ const LegalNoticeForm=(props)=>{
             
             <br/>
             <center>
-               <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
+               <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
                     Generate PDF
                 </Button>&emsp;
-                <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltodocx(document.querySelector('#legalnoticeform'),'Legal_Notice.pdf')}>
+                <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltodocx(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
                     Generate DOCX
                 </Button> 
             </center>
