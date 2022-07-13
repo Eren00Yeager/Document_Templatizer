@@ -20,7 +20,7 @@ const Chooser = ({ props }) => {
         <div className={styles.forHead}>paper</div>
       </div>
 
-      <div className={styles.forHead2}>Let's make a paper!</div>
+      <div className={styles.forHead2}>Let&apos;s make a paper!</div>
 
       <div className={styles.colFlex2}>
         <div className={styles.forCase}>
