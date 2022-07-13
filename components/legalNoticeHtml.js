@@ -48,7 +48,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                             </em>
                         </Col>
                     </Row>
-                    <Row className='lnformrows' style={{'textAlign':'right'}} id='lnclient'>
+                    <Row className={`lnformrows ${styles.alignright}`} id='lnclient'>
                             <strong>My Client:</strong><br/>
                             <strong>
                                 <em>Mr.{client['name']} ,</em>
@@ -109,7 +109,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                     <Row className='lnformrows' id='lnstatements'>
                         <span style={{'paddingLeft':'3%'}}>
                             <ol>
-                                <li>That my Client {client['name']}, a resident of {client['address']}</li>
+                                <li>That my Client {client['name']}, a resident of {client['address1']} {client['address2']} {client['city']} {client['state']} , {client['pin']}</li>
                                 {statements.length==0? 
                                 <>________________<br/>________________</>:
                                 statements.map((statement,id)=>{
