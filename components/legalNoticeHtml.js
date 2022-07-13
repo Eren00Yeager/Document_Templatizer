@@ -35,7 +35,10 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                                 {recipient['name']}
                             </em><br/>
                             <em>
-                                {recipient['address']}
+                                {recipient['address1']}
+                            </em><br/>
+                            <em>
+                                {recipient['address2']}
                             </em><br/>
                             <em>
                                 {recipient['city']}, {recipient['state']}
@@ -50,13 +53,22 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                             <strong>
                                 <em>Mr.{client['name']} ,</em>
                             </strong><br/>
-                        
-                            <Col xs={{span:5,offset:7}}> 
-                                <em>
-                                    <span >R/o – {client['address']}</span>
-                                </em> 
-                            </Col>
+
+                            <em>
+                                R/o – {client['address1']}
+                            </em><br/>
+                            <em>
+                                {client['address2']}
+                            </em> <br/>
+                            <em>
+                                {client['city']}, {client['state']}
+                            </em><br/>
+                            <em>
+                                Pin : {client['pin']}
+                            </em>
+
                     </Row>
+                    <br/>
                     <Row style={{'textAlign':'left'}}>
                         <p>
                         <strong>SUB : </strong>
@@ -85,7 +97,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                         </span>           
                     </Row>
                     <Row>
-                    <p>
+                        <p>
                         <span >Dear Sir/ Ma’am,</span>
                         </p> 
                     </Row>

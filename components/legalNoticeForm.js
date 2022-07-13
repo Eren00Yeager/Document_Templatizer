@@ -96,34 +96,41 @@ const LegalNoticeForm=(props)=>{
                     <Accordion.Header onClick={()=>onclickAccordion('#lnrecipient')}>Recipient Name and Address</Accordion.Header>
                     <Accordion.Body>
                         <Form.Group className="mb-3">
-                            <Form.Label>Recipient Company Name</Form.Label>
+                            <Form.Label>Recipient Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter Name of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'name':e.target.value
                             }))}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Recipient Address</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
+                            <Form.Label>Recipient Address Line 1</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 1 of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
-                                'address':e.target.value
+                                'address1':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerPhone">
+                        <Form.Group className="mb-3">
+                            <Form.Label>Recipient Address Line 2</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 2 of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
+                                ...prevState,
+                                'address2':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient City</Form.Label>
                             <Form.Control type="text" placeholder="Enter City of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'city':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerMobile">
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient State</Form.Label>
                             <Form.Control type="text" placeholder="Enter State of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
                                 'state':e.target.value
                             }))}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="LawyerPin">
+                        <Form.Group className="mb-3">
                             <Form.Label>Recipient Pin</Form.Label>
                             <Form.Control type="text" placeholder="Enter Pin of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
                                 ...prevState,
@@ -144,10 +151,38 @@ const LegalNoticeForm=(props)=>{
                             }))}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Client Address</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address of Client" onChange={(e)=>props.setClient(prevState=>({
+                            <Form.Label>Client Address Line 1</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 1 of Client" onChange={(e)=>props.setClient(prevState=>({
                                 ...prevState,
-                                'address':e.target.value
+                                'address1':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client Address Line 2</Form.Label>
+                            <Form.Control type="textarea" placeholder="Enter Address Line 2 of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'address2':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client City</Form.Label>
+                            <Form.Control type="text" placeholder="Enter City of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'city':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client State</Form.Label>
+                            <Form.Control type="text" placeholder="Enter State of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'state':e.target.value
+                            }))}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Client Pin</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Pin of Client" onChange={(e)=>props.setClient(prevState=>({
+                                ...prevState,
+                                'pin':e.target.value
                             }))}/>
                         </Form.Group>
                     </Accordion.Body>
