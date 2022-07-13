@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Paper from "../public/paper.svg";
 import Image from "next/image";
 import IndvCard from "../components/indvCard";
-import Data from "../data/templateData.json";
 
 const Chooser = ({ props }) => {
   const [caseType, setCaseType] = useState("");
@@ -70,7 +69,7 @@ const Chooser = ({ props }) => {
               name="papers"
               type="radio"
               onClick={() => {
-                setPaperType("lnotice");
+                setPaperType("legalnotice");
               }}
             />
             <label htmlFor="Legnotice" className={styles.innerB}>

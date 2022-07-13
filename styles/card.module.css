@@ -71,7 +71,7 @@
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     width: 100%;
-    height: 3em;
+    height: 1em;
     overflow: hidden;
   }
 
@@ -252,8 +252,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  align-self: center;
   justify-content: center;
+  width: 80%;
 }
 
 /* Pagination Styling Starts here */
