@@ -48,7 +48,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,references,statements})=>{
                             </em>
                         </Col>
                     </Row>
-                    <Row className='lnformrows' style={{'textAlign':'right'}} id='lnclient'>
+                    <Row className='lnformrows justify-content-right' style={{'textAlign':'right'}} id='lnclient'>
                             <strong>My Client:</strong><br/>
                             <strong>
                                 <em>Mr.{client['name']} ,</em>
