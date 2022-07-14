@@ -8,11 +8,11 @@ import styles from '../styles/Home.module.css'
 function ColorSchemesExample(props) {
   const handleClick=()=>{
     
-    var data=props.sheetdata
-    if(!data){
+    var data;
+    if(props.sheetdata.length==0){
       alert('No more data in sheet')
     }else{
-      data=data.shift()
+      data=props.sheetdata.shift()
       props.setClient(prevState=>({
         ...prevState,
         'name':data['client_name'],
