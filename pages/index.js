@@ -18,14 +18,14 @@ export default function Home() {
         <Row>
           <Col>
             <Link href='/legalNoticeTemplate'>
-              <Button variant="success" style={{'height':'10vh'}}>
+              <Button variant="success" style={{'height':'10vh','fontWeight':'bolder','fontSize':'24px','padding':'3vh'}}>
                   Consumer Legal Notice Template
               </Button>
             </Link>
           </Col>
           <Col>
             <Link href='/legalNoticeTemplate'>
-              <Button variant="success" style={{'height':'10vh'}}>
+              <Button variant="success" style={{'height':'10vh','fontWeight':'bolder','fontSize':'24px','padding':'3vh'}}>
                   Insurance Legal Notice Template
               </Button>
             </Link>

@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import {rstotext} from './utils/rstotext'
+import styles from '../styles/Home.module.css'
 
 function ColorSchemesExample(props) {
   const handleClick=()=>{
@@ -36,11 +37,11 @@ function ColorSchemesExample(props) {
   }
   return (
     <>
-      <Navbar expand="lg" style={{'background':'linear-gradient(#2AF598,#00FA9A)','height':'5vh'}}>
+      <Navbar expand="lg" className={styles.navbar}>
         <Container>
-          <Navbar.Brand style={{'color': 'white', 'fontWeight':'bold', 'fontSize':'30px'}} href="/">{props.name}</Navbar.Brand>
-          <Navbar.Text className='d-none d-sm-block'>
-            <Button onClick={handleClick}>Prefill Next</Button>
+          <Navbar.Brand className={styles.navbarbrand}  href="/">{props.name}</Navbar.Brand>
+          <Navbar.Text>
+            <Button variant='success' onClick={handleClick}>Prefill Next</Button>
           </Navbar.Text>
         </Container>
       </Navbar>

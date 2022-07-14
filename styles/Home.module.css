@@ -115,3 +115,14 @@
     flex-direction: column;
   }
 }
+
+.navbar{
+  background:linear-gradient(#2AF598,#00FA9A);
+  height:5vh;
+}
+
+.navbarbrand{
+  color: white!important;
+  font-weight:'bolder';
+  font-size:30px;
+}
