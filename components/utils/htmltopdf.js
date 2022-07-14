@@ -1,4 +1,34 @@
 import jsPDF from 'jspdf'
+import emailjs from 'emailjs-com'
+
+const htmltomail=(lawyer,client,date,recipient,rupees,reason,action)=>{
+
+    const target={
+        date: date,
+        rupees: `${rupees['rs']} (${rupees['words']})`,
+        reason: reason,
+        action: action,
+        lawyer: `${lawyer['name']}\n(Advocate)\n${lawyer['id']}`,
+        client_name: client['name'],
+        recipient_name: recipient['name'],
+        recipient_address: recipient['address'],
+        client_address: client['address'],
+        to_mail: 'abdul.hadi@vakilsearch.com'
+    }
+
+    const btn=document.querySelector('#htmltoemailbtn')
+    btn.textContent='Sending.....'
+
+    emailjs.send('service_f4av84q','template_x1omc2i',target,'nAtPfGEQGrscudxr6')
+    .then((result) => {
+        console.log(result.text);
+        alert("Mail is send succesfully")
+        btn.textContent='Send mail'
+
+    }, (error) => {
+        console.log(error.text);
+    });
+}
 
 const htmltopdf=async(htmlText,fileName)=>{
 
@@ -61,5 +91,6 @@ const htmltodocx=async(htmlText,fileName)=>{
 
 module.exports={
     htmltopdf,
-    htmltodocx
+    htmltodocx,
+    htmltomail
 }

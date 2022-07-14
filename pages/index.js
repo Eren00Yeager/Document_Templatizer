@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Chooser from '../components/chooser';
+import { Col,Row,Form,Button, Container } from 'react-bootstrap'
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -12,7 +14,24 @@ export default function Home() {
        
       </Head>
 
-      <Chooser/>
+      <Container style={{'height':'100vh','textAlign':'center','paddingTop':'45vh'}}>
+        <Row>
+          <Col>
+            <Link href='/legalNoticeTemplate'>
+              <Button variant="success" style={{'height':'10vh'}}>
+                  Consumer Legal Notice Template
+              </Button>
+            </Link>
+          </Col>
+          <Col>
+            <Link href='/legalNoticeTemplate'>
+              <Button variant="success" style={{'height':'10vh'}}>
+                  Insurance Legal Notice Template
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+      </Container>
 
     </div>
   )

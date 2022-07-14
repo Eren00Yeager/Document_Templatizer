@@ -33,18 +33,17 @@
     padding: 5vh;
     height: 95vh;
     overflow-y: hidden;
-    background: #2AF598;
+    background: #00FA9A;
     
 }
 
-.accordion{
-    margin: 1vh;
+.lnform{
     color: black!important;
 }
 
 .mobileform{
     height: 85vh!important;
-    background-color: #2AF598;
+    background-color: #00FA9A;
     
 }
 
@@ -73,4 +72,5 @@
 .alignright{
     text-align: right!important;
     margin-left: auto!important;
+    width: 50%;
 }

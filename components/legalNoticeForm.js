@@ -1,282 +1,147 @@
 import styles from '../styles/legalnotice.module.css'
 import { Col,Row,Form,Button,Accordion, AccordionContext ,useAccordionButton} from 'react-bootstrap'
-import { useContext, useState } from 'react'
-import {htmltopdf,htmltodocx} from './utils/htmltopdf'
+import { useContext, useRef, useState } from 'react'
+import {htmltopdf,htmltodocx,htmltomail} from './utils/htmltopdf'
+import emailjs from 'emailjs-com'
+import { rstotext } from './utils/rstotext'
+
 
 const LegalNoticeForm=(props)=>{
 
-    const [dummyref,setDummyref]=useState('')
-    const [dummystatement,setDummystatement]=useState('')
-
-
-    const onclickAccordion=(id)=>{
-        document.querySelectorAll('.lnformrows').forEach((row)=>{
-            if(`#${row.id}`!=id){row.style=null}
-        }) 
-        const element=document.querySelector(id)
-
-        element.scrollIntoView({ 
-            behavior: 'smooth' 
-          });
-
-        
-        if(!element.style.backgroundColor){
-            element.style.backgroundColor='lightgrey'
-            element.style.borderRadius='10px'
-            element.style.scale='1.05'
-            element.style.opacity = 2;
-        }else{
-            element.style=null
-        }
-
-    }
     return(
-        <Form>
-            <Accordion flush>
-                <Form.Group className={styles.accordion} onFocus={()=>onclickAccordion('#lndate')}>
-                    <Row>
-                    <Col xs={{span:8,offset:4}} md={{span:3,offset:9}}>
-                        <Form.Control type="date" placeholder="Enter Mobile of Lawyer"  style={{'textAlign':'center'}} onChange={(e)=>props.setDate(e.target.value)}/>
-                    </Col>
-                    </Row>
-                </Form.Group>
+        <Form className={styles.lnform}>
+
+            <Form.Group className={styles.accordion}>
+                <Row>
+                <Col xs={{span:8,offset:4}} md={{span:3,offset:9}}>
+                    <Form.Control type="date"  style={{'textAlign':'center'}} onChange={(e)=>props.setDate(e.target.value)}/>
+                </Col>
+                </Row>
+            </Form.Group><hr/>
+
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Name of Lawyer</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.lawyer['name']} onChange={(e)=>props.setLawyer(prevState=>({
+                        ...prevState,
+                        'name':e.target.value
+                    }))}/>
+                </Col>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter ID of Lawyer</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.lawyer['id']} onChange={(e)=>props.setLawyer(prevState=>({
+                        ...prevState,
+                        'id':e.target.value
+                    }))}/>
+                </Col>    
+            </Form.Group><hr/>
+
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Name of Client</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.client['name']} onChange={(e)=>props.setClient(prevState=>({
+                        ...prevState,
+                        'name':e.target.value
+                    }))}/>    
+                </Col>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Address of Client</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control as="textarea" value={props.client['address']} onChange={(e)=>props.setClient(prevState=>({
+                        ...prevState,
+                        'address':e.target.value
+                    }))}/>
+                </Col>
                 
+            </Form.Group><hr/>
 
-                <Accordion.Item className={styles.accordion} eventKey="1">
-                    <Accordion.Header onClick={()=>onclickAccordion('#lnlawyer')}>Lawyer Name and Address</Accordion.Header>
-                    <Accordion.Body>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Lawyer Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Name of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
-                                ...prevState,
-                                'name':e.target.value.toUpperCase()
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Lawyer ID</Form.Label>
-                            <Form.Control type="text" placeholder="Enter ID of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
-                                ...prevState,
-                                'id':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Lawyer Address</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
-                                ...prevState,
-                                'address':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Lawyer Pin</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Pin of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
-                                ...prevState,
-                                'pin':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Lawyer Phone</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Phone of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
-                                ...prevState,
-                                'phone':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>LawyerMobile</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Mobile of Lawyer" onChange={(e)=>props.setLawyer(prevState=>({
-                                ...prevState,
-                                'mobile':e.target.value
-                            }))}/>
-                        </Form.Group>
-                    </Accordion.Body>
-                </Accordion.Item>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Name of Recipient</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.recipient['name']} onChange={(e)=>props.setRecipient(prevState=>({
+                        ...prevState,
+                        'name':e.target.value
+                    }))}/>
+                </Col>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Email of Recipient</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.recipient['email']} onChange={(e)=>props.setRecipient(prevState=>({
+                        ...prevState,
+                        'email':e.target.value
+                    }))}/>
+                </Col>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Address of Recipient</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control as="textarea" value={props.recipient['address']} onChange={(e)=>props.setRecipient(prevState=>({
+                        ...prevState,
+                        'address':e.target.value
+                    }))}/>
+                </Col>
+            </Form.Group><hr/>
 
-                <Accordion.Item className={styles.accordion} eventKey="2">
-                    <Accordion.Header onClick={()=>onclickAccordion('#lnrecipient')}>Recipient Name and Address</Accordion.Header>
-                    <Accordion.Body>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Recipient Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Name of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
-                                ...prevState,
-                                'name':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Recipient Address Line 1</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address Line 1 of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
-                                ...prevState,
-                                'address1':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Recipient Address Line 2</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address Line 2 of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
-                                ...prevState,
-                                'address2':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Recipient City</Form.Label>
-                            <Form.Control type="text" placeholder="Enter City of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
-                                ...prevState,
-                                'city':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Recipient State</Form.Label>
-                            <Form.Control type="text" placeholder="Enter State of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
-                                ...prevState,
-                                'state':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Recipient Pin</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Pin of Recipient" onChange={(e)=>props.setRecipient(prevState=>({
-                                ...prevState,
-                                'pin':e.target.value
-                            }))}/>
-                        </Form.Group>
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item className={styles.accordion} eventKey="3">
-                    <Accordion.Header onClick={()=>onclickAccordion('#lnclient')}>Client Name and Address</Accordion.Header>
-                    <Accordion.Body>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Client Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Name of Client" onChange={(e)=>props.setClient(prevState=>({
-                                ...prevState,
-                                'name':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Client Address Line 1</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address Line 1 of Client" onChange={(e)=>props.setClient(prevState=>({
-                                ...prevState,
-                                'address1':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Client Address Line 2</Form.Label>
-                            <Form.Control type="textarea" placeholder="Enter Address Line 2 of Client" onChange={(e)=>props.setClient(prevState=>({
-                                ...prevState,
-                                'address2':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Client City</Form.Label>
-                            <Form.Control type="text" placeholder="Enter City of Client" onChange={(e)=>props.setClient(prevState=>({
-                                ...prevState,
-                                'city':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Client State</Form.Label>
-                            <Form.Control type="text" placeholder="Enter State of Client" onChange={(e)=>props.setClient(prevState=>({
-                                ...prevState,
-                                'state':e.target.value
-                            }))}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Client Pin</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Pin of Client" onChange={(e)=>props.setClient(prevState=>({
-                                ...prevState,
-                                'pin':e.target.value
-                            }))}/>
-                        </Form.Group>
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item className={styles.accordion} eventKey="4">
-                    <Accordion.Header onClick={()=>onclickAccordion('#lnreferences')}>References</Accordion.Header>
-                    <Accordion.Body>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Add references here</Form.Label>
-                            <Row>
-                                <Col xs={9}>
-                                    <Form.Control rows={3} as="textarea"  value={dummyref} onChange={(e)=>setDummyref(e.target.value)}/>    
-                                </Col>
-                                <Col xs={2}>
-                                    <Button variant="info" onClick={(e)=>{
-                                        e.preventDefault();
-                                        if(dummyref){
-                                            props.setReferences(prevState=>([...prevState,dummyref]));
-                                            setDummyref('')
-                                        } 
-                                    }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" className="bi bi-plus-lg" viewBox="0 0 16 16">
-                                            <path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                                        </svg>    
-                                    </Button>   
-                                </Col>
-                            </Row>
-                            <Row>
-                                <span style={{'padding':'3% 3% 0 3%','color':'black'}}>
-                                    <ol>
-                                        {props.references.map((ref,id)=>{
-                                            return(
-                                                <li key={id}>{ref}</li>
-                                            );
-                                        })}
-                                    </ol>    
-                                </span> 
-                            </Row>
-                        </Form.Group>
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item className={styles.accordion} eventKey="5">
-                    <Accordion.Header onClick={()=>onclickAccordion('#lnstatements')}>Statements</Accordion.Header>
-                    <Accordion.Body>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Add statements here</Form.Label>
-                            <Row>
-                                <Col xs={9}>
-                                    <Form.Control rows={3} as="textarea"  value={dummystatement} onChange={(e)=>setDummystatement(e.target.value)}/>    
-                                </Col>
-                                <Col xs={2}>
-                                    <Button variant="info" onClick={(e)=>{
-                                        e.preventDefault();
-                                        if(dummystatement){
-                                            props.setStatements(prevState=>([...prevState,dummystatement]));
-                                            setDummystatement('')
-                                        } 
-                                    }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" className="bi bi-plus-lg" viewBox="0 0 16 16">
-                                            <path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                                        </svg>    
-                                    </Button>   
-                                </Col>
-                            </Row>
-                            <Row>
-                                <span style={{'padding':'3% 3% 0 3%','color':'black'}}>
-                                    <ol start='2'>
-                                        {props.statements.map((ref,id)=>{
-                                            return(
-                                                <li key={id}>{ref}</li>
-                                            );
-                                        })}
-                                    </ol>    
-                                </span> 
-                            </Row>
-                        </Form.Group>
-                    </Accordion.Body>
-                </Accordion.Item>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Amount to be refunded</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="number" value={props.rupees['rs']} onChange={(e)=>
+                    {
+                        props.setRupees(prevState=>({
+                        ...prevState,
+                        'rs':e.target.value,
+                        'words':rstotext(e.target.value)
+                        }))
+                    }
+                    }/>
+                </Col>
                 
-            </Accordion>
-            
-            <br/>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Amount in words</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.rupees['words']} onChange={(e)=>props.setRupees(prevState=>({
+                        ...prevState,
+                        'words':e.target.value
+                    }))}/>
+                </Col>
+            </Form.Group><hr/>
+
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Reason for the notice</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.reason} onChange={(e)=>props.setReason(e.target.value)}/>
+                </Col>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Action</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control type="text" value={props.action} onChange={(e)=>props.setAction(e.target.value)}/>
+                </Col>
+            </Form.Group>
+
+
             <center>
                <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
                     Generate PDF
                 </Button>&emsp;
                 <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltodocx(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
                     Generate DOCX
+                </Button> &emsp;
+                <Button id='htmltoemailbtn' variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltomail(props.lawyer,props.client,props.date,props.recipient,props.rupees,props.reason,props.action)}>
+                    Send mail
                 </Button> 
             </center>
-                   
-            
         </Form>
     );
 }
 
 export default LegalNoticeForm;
+
+
+
+

@@ -9,9 +9,9 @@ const IndvCard = (props) => {
 
   return (
     <div className={styles.rowFlex}>
-      {Data[`${props.case}`][`${props.paper}`].map((template) => {
+      {Data[`${props.case}`][`${props.paper}`].map((template,id) => {
         return (
-          <div onClick={()=>{router.push(`${template.url}`)}}>
+          <div key={id} onClick={()=>{router.push(`${template.url}`)}}>
             <button
               className={styles.forButton}
               style={{ backgroundColor: "white" }}
