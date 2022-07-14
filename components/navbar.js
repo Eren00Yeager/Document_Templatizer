@@ -6,6 +6,7 @@ import {rstotext} from './utils/rstotext'
 
 function ColorSchemesExample(props) {
   const handleClick=()=>{
+    
     var data=props.sheetdata
     if(!data){
       alert('No more data in sheet')
@@ -39,7 +40,7 @@ function ColorSchemesExample(props) {
         <Container>
           <Navbar.Brand style={{'color': 'white', 'fontWeight':'bold', 'fontSize':'30px'}} href="/">{props.name}</Navbar.Brand>
           <Navbar.Text className='d-none d-sm-block'>
-            <Button onClick={handleClick}>Prefill : Next</Button>
+            <Button onClick={handleClick}>Prefill Next</Button>
           </Navbar.Text>
         </Container>
       </Navbar>

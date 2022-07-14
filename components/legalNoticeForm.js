@@ -14,7 +14,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className={styles.accordion}>
                 <Row>
                 <Col xs={{span:8,offset:4}} md={{span:3,offset:9}}>
-                    <Form.Control type="date"  style={{'textAlign':'center'}} onChange={(e)=>props.setDate(e.target.value)}/>
+                    <Form.Control type="date" value={props.date}  style={{'textAlign':'center'}} onChange={(e)=>props.setDate(e.target.value)}/>
                 </Col>
                 </Row>
             </Form.Group><hr/>

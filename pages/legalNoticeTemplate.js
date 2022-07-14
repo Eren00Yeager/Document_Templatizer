@@ -2,18 +2,33 @@
 import styles from '../styles/legalnotice.module.css'
 import jsPDF from 'jspdf'
 import { useEffect, useState } from 'react'
-import { Col,Row,Form,Button, Container } from 'react-bootstrap'
+import { Col,Row,Spinner } from 'react-bootstrap'
 import LegalNoticeForm from '../components/legalNoticeForm'
 import LegalNoticeHtml from '../components/legalNoticeHtml'
 import Lnformhtmlmobile from '../components/lnformhtmlmobile'
 import axios from 'axios'
 import Nav from '../components/navbar'
 
+const SpinnerComp=()=>{
+    return(
+        <span style={{height:'100vh',marginTop:'45vh'}}>
+            <center style={{paddingTop:'45vh'}}>
+                <Spinner animation="grow" style={{color:'#00FA9A',height:'5vh',width:'5vh'}}/>
+            </center>
+        </span>
+    );
+}
 
 const LegalNoticeTemplate = () => {
 
+    Date.prototype.toDateInputValue = (function() {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0,10);
+    });
+
     const[sheetdata,setSheetdata]=useState('')
-    const [date,setDate]=useState(Date)
+    const [date,setDate]=useState(new Date().toDateInputValue())
     const [lawyer,setLawyer]=useState({
         'id':'D/123/2310',
         'name':'ANTIM AMLAN'
@@ -49,6 +64,8 @@ const LegalNoticeTemplate = () => {
 
 return(
     <>
+    {!sheetdata? <SpinnerComp/>:
+    <>
     <Nav name='Consumer Legal Notice Template' setSheetdata={setSheetdata} sheetdata={sheetdata}
     setLawyer={setLawyer} setDate={setDate} setRecipient={setRecipient} setClient={setClient} 
     setRupees={setRupees} setAction={setAction} setReason={setReason}/>
@@ -70,8 +87,8 @@ return(
             recipient={recipient} rupees={rupees} action={action}/>
         </div>  
     </Row>
-        
-        
+    </>
+}
     </>
 );
     
