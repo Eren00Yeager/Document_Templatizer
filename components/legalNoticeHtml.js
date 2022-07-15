@@ -92,9 +92,9 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,product})=>{
                         <center><strong>A copy of the Legal Notice has been retained in my office for future reference.</strong></center>
                     </Row>
                     <Row style={{'textAlign':'left'}}>
-                        {lawyer['name']}<br/>
-                        (Advocate)<br/>
-                        {lawyer['id']}
+                    &emsp;{lawyer['name']}<br/>
+                    &emsp;(Advocate)<br/>
+                    &emsp;{lawyer['id']}
                     </Row>
                 </Container>
             </div> 

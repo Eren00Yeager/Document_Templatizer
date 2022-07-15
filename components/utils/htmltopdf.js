@@ -13,7 +13,7 @@ const htmltomail=(lawyer,client,date,recipient,rupees,product)=>{
         lawyer_id:lawyer['id'],
         client_name: client['name'],
         client_address:client['address'],
-        client_email:client['email'],
+        client_mail:client['email'],
         recipient_name: recipient['name'],
         recipient_address: recipient['address'],
         recipient_mail: recipient['email'],
