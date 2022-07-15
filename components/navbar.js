@@ -10,7 +10,8 @@ function ColorSchemesExample(props) {
   const handleClick=()=>{
 
     const btn=document.querySelector('#prefillnext')
-    btn.textContent=`Pls Wait\n Don't click again.....`
+    btn.textContent="Pls Wait....."
+    btn.disabled=true
     
     var data;
     if(props.sheetdata.length==0){
@@ -42,20 +43,22 @@ function ColorSchemesExample(props) {
       }))
     }
 
-    btn.textContent="Prefill Next"
     
-    // axios
-    //   .get("/api/getconsumer")
-    //   .then((res) => {
-    //     console.log("Done")
-    //     btn.textContent="Prefill Next"
-    //   })
-    //   .catch((err)=>{
-    //     alert("error in getting data from google sheet")
-    //     console.log("error in consumernewsheet")
-    //     console.log(err)
-    //     btn.textContent="Prefill Next"
-    //   });
+    axios
+      .get("/api/updateconsumer")
+      .then((res) => {
+        console.log("Done")
+      })
+      .catch((err)=>{
+        alert("error")
+        console.log("error in updateconsumer")
+        console.log(err)
+        
+      })
+      .finally((e)=>{
+        btn.textContent="Prefill Next"
+        btn.disabled=false
+      });
     
 
   }
@@ -63,7 +66,7 @@ function ColorSchemesExample(props) {
     <>
       <Navbar expand="lg" className={styles.navbar}>
         <Container>
-          <Navbar.Brand className={styles.navbarbrand}  href="/">{props.name}</Navbar.Brand>
+          <Navbar.Brand className={styles.navbarbrand}  href="/"><strong>Consumer Legal Notice</strong></Navbar.Brand>
           <Navbar.Text>
             <Button variant='success' id='prefillnext' onClick={handleClick}>Prefill Next</Button>
           </Navbar.Text>

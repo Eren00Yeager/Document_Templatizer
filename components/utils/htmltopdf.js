@@ -8,27 +8,34 @@ const htmltomail=(lawyer,client,date,recipient,rupees,product)=>{
         rupees: `${rupees['rs']} (${rupees['words']})`,
         reason: product['reason'],
         action: product['action'],
-        lawyer: `${lawyer['name']}\n(Advocate)\n${lawyer['id']}`,
+        lawyer_name: lawyer['name'],
+        lawyer_address:lawyer['address'],
+        lawyer_id:lawyer['id'],
         client_name: client['name'],
         client_address:client['address'],
+        client_email:client['email'],
         recipient_name: recipient['name'],
         recipient_address: recipient['address'],
-        client_address: client['address'],
-        to_mail: 'abdul.hadi@vakilsearch.com',
+        recipient_mail: recipient['email'],
         order_id:product['id']
     }
 
     const btn=document.querySelector('#htmltoemailbtn')
     btn.textContent='Sending.....'
+    btn.disabled=true
 
     emailjs.send('service_f4av84q','template_x1omc2i',target,'nAtPfGEQGrscudxr6')
     .then((result) => {
         console.log(result.text);
         alert("Mail is send succesfully")
         btn.textContent='Send mail'
+        btn.disabled=false
 
     }, (error) => {
         console.log(error.text);
+        alert('Error in sending mail , Please try again')
+        btn.textContent='Send mail'
+        btn.disabled=false
     });
 }
 

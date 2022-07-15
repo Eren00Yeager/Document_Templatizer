@@ -169,6 +169,9 @@ const LegalNoticeForm=(props)=>{
                     Send mail
                 </Button> 
             </center>
+
+            <br/>
+            
         </Form>
     );
 }

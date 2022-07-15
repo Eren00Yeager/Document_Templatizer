@@ -22,19 +22,15 @@ async function handler(req, res) {
             version: 'v4',
           });
       
-          const response1 = await sheets.spreadsheets.values.get({
-            spreadsheetId: process.env.DATABASE_ID,
-            range: 'Consumernew!M3', // sheet name
-          });
-
-          const value=response1.data.values[0][0]
           
           const response = await sheets.spreadsheets.values.get({
             spreadsheetId: process.env.DATABASE_ID,
-            range: `Consumernew!A${3+parseInt(value)}:J1001`, // sheet name
+            range: `Consumernew!A3:J1001`, // sheet name
           });
           
           const rows = response.data.values;
+          const spliceval=rows[0][5]
+          rows.splice(0,1+parseInt(spliceval))
           
           if (rows.length) {
             return res.status(200).json(rows.map((row)=>({

@@ -23,27 +23,25 @@ async function handler(req, res) {
 
           const response1 = await sheets.spreadsheets.values.get({
             spreadsheetId: process.env.DATABASE_ID,
-            range: 'Consumernew!M3', // sheet name
+            range: 'Consumernew!F3:J3', 
           });
-          console.log(response1.data.values[0][0])
+
           const value=parseInt(response1.data.values[0][0])+1
           
-          const response2 = await sheets.spreadsheets.values.append({
-            spreadsheetId: process.env.DATABASE_ID,
-            range: 'Consumernew!M3',
-            valueInputOption: 'USER_ENTERED',
-            requestBody: {
-              values: [[`${value}`]],
-            },
-          });
+          const response2=sheets.spreadsheets.values.update(
+            {
+              spreadsheetId:process.env.DATABASE_ID,
+              range: 'Consumernew!F3:J3',
+              valueInputOption:'RAW',
+              resource: {
+                values: [
+                  [value],
+                ],
+              }
+            }
+          )
 
-          const response3 = await sheets.spreadsheets.values.get({
-            spreadsheetId: process.env.DATABASE_ID,
-            range: 'Consumernew!M3', // sheet name
-          });
-          console.log(response3.data.values[0][0])
-
-          res.status(201).json(value);
+          res.status(201);
       
     }catch(e){
         console.log(e)

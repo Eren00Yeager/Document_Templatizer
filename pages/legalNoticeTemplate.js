@@ -72,7 +72,7 @@ return(
     <>
     {!sheetdata? <SpinnerComp/>:
     <>
-    <Nav name='Consumer Legal Notice Template' setSheetdata={setSheetdata} sheetdata={sheetdata}
+    <Nav setSheetdata={setSheetdata} sheetdata={sheetdata}
     setLawyer={setLawyer} setDate={setDate} setRecipient={setRecipient} setClient={setClient} 
     setRupees={setRupees} setProduct={setProduct}/>
     <Row className={styles.legalnoticerow}>
