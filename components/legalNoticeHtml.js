@@ -44,10 +44,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,product})=>{
                         <p>
                             <strong>SUB : </strong>
                             <em>
-                                <span >Legal</span>
-                            </em> 
-                            <em>
-                                <span >Notice for deficiency in services, defects and mental harassment.</span>
+                                <span >Legal Notice for deficiency in services, defects and mental harassment.</span>
                             </em>
                         </p>
                     </Row>
@@ -88,7 +85,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,product})=>{
                             Take further notice that in case of failure to discharge your obligations and commitments within the time specified, my Client shall be further constrained to lodge a consumer complaint against You for deficiency of services, wrongful loss, and mental harassment caused to my Client by You and your representatives and also institute such other proceedings and actions in law as advised.                         
                         </p>
                         <center><strong>A copy of the Legal Notice has been retained in my office for future reference.</strong></center>
-                    </Row>
+                    </Row><br/>
                     <Row style={{'textAlign':'left'}}>
                     <span>&emsp;{lawyer['name']==''? '______________' : lawyer['name']}<br/></span>
                     <span>&emsp;(Advocate)<br/></span>

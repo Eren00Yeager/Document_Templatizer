@@ -30,9 +30,9 @@ const LegalNoticeTemplate = () => {
     const[sheetdata,setSheetdata]=useState('')
     const [date,setDate]=useState(new Date().toDateInputValue())
     const [lawyer,setLawyer]=useState({
-        'id':'D/123/2310',
-        'name':'ANTIM AMLAN',
-        'address':'address of lawyer'
+        'id':'D/145/2032',
+        'name':'VISHAL KHANDELVAL',
+        'address':'IIT MADRAS'
     })
     const [client,setClient]=useState({
         'name':'',

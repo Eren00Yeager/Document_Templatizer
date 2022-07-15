@@ -9,6 +9,7 @@ import { rstotext } from './utils/rstotext'
 const LegalNoticeForm=(props)=>{
 
     const onclickAccordion=(id)=>{
+
         document.querySelectorAll('.lnformrows').forEach((row)=>{
             if(`#${row.id}`!=id){row.style=null}
         }) 
