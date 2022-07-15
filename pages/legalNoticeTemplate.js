@@ -31,7 +31,8 @@ const LegalNoticeTemplate = () => {
     const [date,setDate]=useState(new Date().toDateInputValue())
     const [lawyer,setLawyer]=useState({
         'id':'D/123/2310',
-        'name':'ANTIM AMLAN'
+        'name':'ANTIM AMLAN',
+        'address':'address of lawyer'
     })
     const [client,setClient]=useState({
         'name':'',
