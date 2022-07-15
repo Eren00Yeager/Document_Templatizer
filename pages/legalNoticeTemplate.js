@@ -35,7 +35,8 @@ const LegalNoticeTemplate = () => {
     })
     const [client,setClient]=useState({
         'name':'',
-        'address':''
+        'address':'',
+        'email':''
     })
     const [recipient,setRecipient]=useState({
         'name':'',
@@ -46,8 +47,12 @@ const LegalNoticeTemplate = () => {
         'rs':0,
         'words':'Zero'
     })
-    const [action,setAction]=useState('')
-    const [reason,setReason]=useState('')
+    const [product,setProduct]=useState({
+        'id':'',
+        'reason':'',
+        'action':''
+    })
+    
 
     useEffect(()=>{
         axios
@@ -56,7 +61,8 @@ const LegalNoticeTemplate = () => {
             setSheetdata(res.data)
           })
           .catch((err)=>{
-            console.log("error in consumersheet")
+            alert("error in getting data from google sheet")
+            console.log("error in consumernewsheet")
             console.log(err)
           });
     },[])
@@ -68,23 +74,23 @@ return(
     <>
     <Nav name='Consumer Legal Notice Template' setSheetdata={setSheetdata} sheetdata={sheetdata}
     setLawyer={setLawyer} setDate={setDate} setRecipient={setRecipient} setClient={setClient} 
-    setRupees={setRupees} setAction={setAction} setReason={setReason}/>
+    setRupees={setRupees} setProduct={setProduct}/>
     <Row className={styles.legalnoticerow}>
         <Col xs={12} md={7} className={styles.formcol}>
             <LegalNoticeForm 
             lawyer={lawyer} date={date} client={client} 
-            recipient={recipient} rupees={rupees} action={action} reason={reason}
+            recipient={recipient} rupees={rupees} product={product}
             setLawyer={setLawyer} setDate={setDate} setRecipient={setRecipient} setClient={setClient} 
-            setRupees={setRupees} setAction={setAction} setReason={setReason}/>
+            setRupees={setRupees} setProduct={setProduct}/>
         </Col>
         <Col md={5} className={`${styles.htmlcol} d-none d-sm-block`}>
             <LegalNoticeHtml lawyer={lawyer} date={date} client={client} 
-            recipient={recipient} rupees={rupees} action={action} reason={reason}/>
+            recipient={recipient} rupees={rupees} product={product}/>
         </Col>
         <div className={`d-block d-sm-none ${styles.htmlcolmobile}`}>
             <Lnformhtmlmobile
-            lawyer={lawyer} date={date} client={client} reason={reason}
-            recipient={recipient} rupees={rupees} action={action}/>
+            lawyer={lawyer} date={date} client={client} product={product}
+            recipient={recipient} rupees={rupees}/>
         </div>  
     </Row>
     </>

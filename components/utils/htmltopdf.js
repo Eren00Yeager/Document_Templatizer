@@ -1,19 +1,21 @@
 import jsPDF from 'jspdf'
 import emailjs from 'emailjs-com'
 
-const htmltomail=(lawyer,client,date,recipient,rupees,reason,action)=>{
+const htmltomail=(lawyer,client,date,recipient,rupees,product)=>{
 
     const target={
         date: date,
         rupees: `${rupees['rs']} (${rupees['words']})`,
-        reason: reason,
-        action: action,
+        reason: product['reason'],
+        action: product['action'],
         lawyer: `${lawyer['name']}\n(Advocate)\n${lawyer['id']}`,
         client_name: client['name'],
+        client_address:client['address'],
         recipient_name: recipient['name'],
         recipient_address: recipient['address'],
         client_address: client['address'],
-        to_mail: 'abdul.hadi@vakilsearch.com'
+        to_mail: 'abdul.hadi@vakilsearch.com',
+        order_id:product['id']
     }
 
     const btn=document.querySelector('#htmltoemailbtn')

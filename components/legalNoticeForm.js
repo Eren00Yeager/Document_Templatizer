@@ -22,7 +22,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter Name of Lawyer</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.lawyer['name']} onChange={(e)=>props.setLawyer(prevState=>({
+                    <Form.Control required type="text" value={props.lawyer['name']} onChange={(e)=>props.setLawyer(prevState=>({
                         ...prevState,
                         'name':e.target.value
                     }))}/>
@@ -31,7 +31,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter ID of Lawyer</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.lawyer['id']} onChange={(e)=>props.setLawyer(prevState=>({
+                    <Form.Control required type="text" value={props.lawyer['id']} onChange={(e)=>props.setLawyer(prevState=>({
                         ...prevState,
                         'id':e.target.value
                     }))}/>
@@ -41,16 +41,25 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter Name of Client</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.client['name']} onChange={(e)=>props.setClient(prevState=>({
+                    <Form.Control required type="text" value={props.client['name']} onChange={(e)=>props.setClient(prevState=>({
                         ...prevState,
                         'name':e.target.value
                     }))}/>    
                 </Col>
             </Form.Group>
             <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Enter Email of Client</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control required type="text" value={props.client['email']} onChange={(e)=>props.setClient(prevState=>({
+                        ...prevState,
+                        'email':e.target.value
+                    }))}/>
+                </Col>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter Address of Client</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control as="textarea" value={props.client['address']} onChange={(e)=>props.setClient(prevState=>({
+                    <Form.Control required as="textarea" value={props.client['address']} onChange={(e)=>props.setClient(prevState=>({
                         ...prevState,
                         'address':e.target.value
                     }))}/>
@@ -61,7 +70,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter Name of Recipient</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.recipient['name']} onChange={(e)=>props.setRecipient(prevState=>({
+                    <Form.Control required type="text" value={props.recipient['name']} onChange={(e)=>props.setRecipient(prevState=>({
                         ...prevState,
                         'name':e.target.value
                     }))}/>
@@ -70,7 +79,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter Email of Recipient</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.recipient['email']} onChange={(e)=>props.setRecipient(prevState=>({
+                    <Form.Control required type="text" value={props.recipient['email']} onChange={(e)=>props.setRecipient(prevState=>({
                         ...prevState,
                         'email':e.target.value
                     }))}/>
@@ -79,7 +88,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter Address of Recipient</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control as="textarea" value={props.recipient['address']} onChange={(e)=>props.setRecipient(prevState=>({
+                    <Form.Control required as="textarea" value={props.recipient['address']} onChange={(e)=>props.setRecipient(prevState=>({
                         ...prevState,
                         'address':e.target.value
                     }))}/>
@@ -89,7 +98,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Enter Amount to be refunded</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="number" value={props.rupees['rs']} onChange={(e)=>
+                    <Form.Control required type="number" value={props.rupees['rs']} onChange={(e)=>
                     {
                         props.setRupees(prevState=>({
                         ...prevState,
@@ -104,7 +113,7 @@ const LegalNoticeForm=(props)=>{
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Amount in words</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.rupees['words']} onChange={(e)=>props.setRupees(prevState=>({
+                    <Form.Control required type="text" value={props.rupees['words']} onChange={(e)=>props.setRupees(prevState=>({
                         ...prevState,
                         'words':e.target.value
                     }))}/>
@@ -112,27 +121,45 @@ const LegalNoticeForm=(props)=>{
             </Form.Group><hr/>
 
             <Form.Group className="mb-3 row">
+                <Col xs={12} md={2}><Form.Label>Order ID of product</Form.Label></Col>
+                <Col xs={12} md={10}>
+                    <Form.Control required type="text" value={props.product['id']} onChange={(e)=>props.setProduct(prevState=>({
+                        ...prevState,
+                        'id':e.target.value
+                    }))}/>
+                </Col>
+            </Form.Group>
+            <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Reason for the notice</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.reason} onChange={(e)=>props.setReason(e.target.value)}/>
+                    <Form.Control required type="text" value={props.product['reason']} onChange={(e)=>props.setProduct(prevState=>({
+                        ...prevState,
+                        'reason':e.target.value
+                    }))}/>
                 </Col>
             </Form.Group>
             <Form.Group className="mb-3 row">
                 <Col xs={12} md={2}><Form.Label>Action</Form.Label></Col>
                 <Col xs={12} md={10}>
-                    <Form.Control type="text" value={props.action} onChange={(e)=>props.setAction(e.target.value)}/>
+                    <Form.Control required type="text" value={props.product['action']} onChange={(e)=>props.setProduct(prevState=>({
+                        ...prevState,
+                        'action':e.target.value
+                    }))}/>
                 </Col>
             </Form.Group>
 
 
             <center>
-               <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
+               <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>{
+                    console.log([...Object.values(props.client),...Object.values(props.recipient),...Object.values(props.lawyer),...Object.values(props.product)])
+                    //htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice')
+                }}>
                     Generate PDF
                 </Button>&emsp;
                 <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltodocx(document.querySelector('#legalnoticeform'),'Legal_Notice')}>
                     Generate DOCX
                 </Button> &emsp;
-                <Button id='htmltoemailbtn' variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltomail(props.lawyer,props.client,props.date,props.recipient,props.rupees,props.reason,props.action)}>
+                <Button id='htmltoemailbtn' variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>htmltomail(props.lawyer,props.client,props.date,props.recipient,props.rupees,props.product)}>
                     Send mail
                 </Button> 
             </center>

@@ -16,7 +16,8 @@ function ColorSchemesExample(props) {
       props.setClient(prevState=>({
         ...prevState,
         'name':data['client_name'],
-        'address':data['client_address']
+        'address':data['client_address'],
+        'email':data['client_email']
       }))
       props.setRecipient(prevState=>({
         ...prevState,
@@ -29,8 +30,12 @@ function ColorSchemesExample(props) {
           'words':rstotext(data['amount']),
           'rs':data['amount']
       }))
-      props.setAction(data['action'])
-      props.setReason(data['reason'])
+      props.setProduct(prevState=>({
+        ...prevState,
+        'id':data['order_id'],
+        'reason':data['reason'],
+        'action':data['action']
+      }))
     }
     
 

@@ -1,10 +1,8 @@
 import styles from '../styles/legalnotice.module.css'
-import { useRef } from 'react';
 import { Col,Row,Form,Button, Container } from 'react-bootstrap'
 
-const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,reason,action})=>{
-    
-    const myRef=useRef(null)
+const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,product})=>{
+ 
     return(
         <div className={styles.formouter}>
             <div id='legalnoticeform' className={styles.form}>
@@ -60,7 +58,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,reason,action})=>{
                         </strong>
                         <span style={{'paddingLeft':'3%'}}>
                             <ol>
-                               <li>That my Client, {client['name']}, residing {client['address']}, had to bear damages due to lack of fulfillment of contract at your end.</li>
+                               <li>Refer to order no : {product['id']}</li>
                             </ol>    
                         </span>           
                     </Row>
@@ -79,10 +77,10 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,reason,action})=>{
                             <ol>
                                 <li>That my Client {client['name']}, a resident of {client['address1']} {client['address2']} {client['city']} {client['state']} , {client['pin']}</li>
                                 <li>The present Legal Notice is in relation to various injuries committed by You, with the intention to deceive and cheat my Client along with other violations of the Consumer Protection Act, 2019 as elaborated in detail hereinafter. You have acted maliciously with knowledge of the wrongful loss to my Client by dishonestly holding back INR {rupees['rs']} ({rupees['words']}).</li>  
-                                <li>That after carefully reading and understanding the commitments, terms, and conditions, advertised and listed by you on your website and mobile application, my Client had ordered a product from your website but the delivery of the product was {reason}.<br/>Find the specific details of the product attached below.  </li>
+                                <li>That after carefully reading and understanding the commitments, terms, and conditions, advertised and listed by you on your website and mobile application, my Client had ordered a product order ID - {product['id']} from your website but the delivery of the product was {product['reason']}. <br/>Find the specific details of the product attached below.  </li>
                                 <li>That after numerous attempts to resolve the issue, there was no proper communication provided by you. </li>
                                 <li>That after examining the above situation and the perilous service provided by You, my Client had to face inconvenience and the product was therefore no more useful at the time due to the delay. That your engaged employees, associates, and representatives were ill-mannered and unresponsive and did not help in resolving the issues raised. </li>
-                                <li>Accordingly, upon instructions of and on behalf of my Client, we hereby demand You to compensate by {action} the above-said amount and respond to the present Notice, within 20 days of the first receipt of this legal notice thereof (by e-mail or other modes) furnishing reasons as to why consumer proceedings for the above-mentioned offenses, should not be initiated against You. </li>
+                                <li>Accordingly, upon instructions of and on behalf of my Client, we hereby demand You to compensate by {product['action']} the above-said amount and respond to the present Notice, within 20 days of the first receipt of this legal notice thereof (by e-mail or other modes) furnishing reasons as to why consumer proceedings for the above-mentioned offenses, should not be initiated against You. </li>
                                 <li>Kindly be informed that in case of failure to respond on your part within the said time period, my Client shall be constrained to initiate legal action in accordance with the law, and in such an event You alone shall be liable for all our costs and expenses in contesting litigation against You and the consequences of such litigation.</li>
                                 <li>This is without prejudice to all other rights and entitlements that we may have against You, the notice(s) issued under law and equity.</li>
                             </ol>    
@@ -95,7 +93,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,reason,action})=>{
                         <center><strong>A copy of the Legal Notice has been retained in my office for future reference.</strong></center>
                     </Row>
                     <Row style={{'textAlign':'left'}}>
-                        <strong>{lawyer['name']}</strong><br/>
+                        {lawyer['name']}<br/>
                         (Advocate)<br/>
                         {lawyer['id']}
                     </Row>
