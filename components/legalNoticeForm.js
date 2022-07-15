@@ -118,6 +118,7 @@ const LegalNoticeForm=(props)=>{
                         'words':e.target.value
                     }))}/>
                 </Col>
+                <Col xs={12}><Form.Text className='text-muted'>&emsp;Amount in words will get automatically updated if amount is less than 10,00,00,00,000</Form.Text></Col>
             </Form.Group><hr/>
 
             <Form.Group className="mb-3 row">
@@ -151,8 +152,13 @@ const LegalNoticeForm=(props)=>{
 
             <center>
                <Button variant="success" size='lg' style={{'margin':'1vh'}} onClick={()=>{
-                    console.log([...Object.values(props.client),...Object.values(props.recipient),...Object.values(props.lawyer),...Object.values(props.product)])
-                    //htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice')
+                    const proparray=[props.rupees['rs'],props.rupees['words'],props.date,...Object.values(props.client),...Object.values(props.recipient),...Object.values(props.lawyer),...Object.values(props.product)]
+                    console.log(proparray.every(val=>val!=''))
+                    if(proparray.every(val=>val!='')){
+                        htmltopdf(document.querySelector('#legalnoticeform'),'Legal_Notice')
+                    }else{
+                        alert('Please fill all the entries')
+                    }
                 }}>
                     Generate PDF
                 </Button>&emsp;

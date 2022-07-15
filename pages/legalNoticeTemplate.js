@@ -44,8 +44,8 @@ const LegalNoticeTemplate = () => {
         'email':''
     })
     const [rupees,setRupees]=useState({
-        'rs':0,
-        'words':'Zero'
+        'rs':'',
+        'words':''
     })
     const [product,setProduct]=useState({
         'id':'',

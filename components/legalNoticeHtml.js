@@ -35,7 +35,6 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,product})=>{
                             <strong>
                                 <em>Mr.{client['name']} ,</em>
                             </strong><br/>
-
                             <em>
                                 R/o – {client['address']}
                             </em>
@@ -54,13 +53,13 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,product})=>{
                     </Row>
                     <Row className='lnformrows' id='lnreferences'>
                         <strong>
-                            <em>Reference:</em>
+                            <em>Reference : </em><br/>
                         </strong>
-                        <span style={{'paddingLeft':'3%'}}>
+                        <em style={{'paddingLeft':'3%'}}>
                             <ol>
                                <li>Refer to order no : {product['id']}</li>
                             </ol>    
-                        </span>           
+                        </em>           
                     </Row>
                     <Row>
                         <p>
@@ -75,7 +74,7 @@ const LegalNoticeHtml=({date,lawyer,client,recipient,rupees,product})=>{
                     <Row className='lnformrows' id='lnstatements'>
                         <span style={{'paddingLeft':'3%'}}>
                             <ol>
-                                <li>That my Client {client['name']}, a resident of {client['address1']} {client['address2']} {client['city']} {client['state']} , {client['pin']}</li>
+                                <li>That my Client, {client['name']}, residing {client['address']}, had to bear damages due to lack of fulfillment of contract at your end.</li>
                                 <li>The present Legal Notice is in relation to various injuries committed by You, with the intention to deceive and cheat my Client along with other violations of the Consumer Protection Act, 2019 as elaborated in detail hereinafter. You have acted maliciously with knowledge of the wrongful loss to my Client by dishonestly holding back INR {rupees['rs']} ({rupees['words']}).</li>  
                                 <li>That after carefully reading and understanding the commitments, terms, and conditions, advertised and listed by you on your website and mobile application, my Client had ordered a product order ID - {product['id']} from your website but the delivery of the product was {product['reason']}. <br/>Find the specific details of the product attached below.  </li>
                                 <li>That after numerous attempts to resolve the issue, there was no proper communication provided by you. </li>

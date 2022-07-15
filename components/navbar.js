@@ -4,9 +4,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import {rstotext} from './utils/rstotext'
 import styles from '../styles/Home.module.css'
+import axios from 'axios';
 
 function ColorSchemesExample(props) {
   const handleClick=()=>{
+
+    const btn=document.querySelector('#prefillnext')
+    btn.textContent=`Pls Wait\n Don't click again.....`
     
     var data;
     if(props.sheetdata.length==0){
@@ -37,6 +41,21 @@ function ColorSchemesExample(props) {
         'action':data['action']
       }))
     }
+
+    btn.textContent="Prefill Next"
+    
+    // axios
+    //   .get("/api/getconsumer")
+    //   .then((res) => {
+    //     console.log("Done")
+    //     btn.textContent="Prefill Next"
+    //   })
+    //   .catch((err)=>{
+    //     alert("error in getting data from google sheet")
+    //     console.log("error in consumernewsheet")
+    //     console.log(err)
+    //     btn.textContent="Prefill Next"
+    //   });
     
 
   }
@@ -46,7 +65,7 @@ function ColorSchemesExample(props) {
         <Container>
           <Navbar.Brand className={styles.navbarbrand}  href="/">{props.name}</Navbar.Brand>
           <Navbar.Text>
-            <Button variant='success' onClick={handleClick}>Prefill Next</Button>
+            <Button variant='success' id='prefillnext' onClick={handleClick}>Prefill Next</Button>
           </Navbar.Text>
         </Container>
       </Navbar>

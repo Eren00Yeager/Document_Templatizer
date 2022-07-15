@@ -1,9 +1,8 @@
-
 import { google } from 'googleapis';
 
 async function handler(req, res) {
+  if (req.method === 'GET') {
     try{
-        
         const auth = new google.auth.GoogleAuth({
             credentials: {
               client_email: process.env.client_email,
@@ -21,42 +20,38 @@ async function handler(req, res) {
             auth,
             version: 'v4',
           });
-      
+
           const response1 = await sheets.spreadsheets.values.get({
             spreadsheetId: process.env.DATABASE_ID,
             range: 'Consumernew!M3', // sheet name
           });
-
-          const value=response1.data.values[0][0]
+          console.log(response1.data.values[0][0])
+          const value=parseInt(response1.data.values[0][0])+1
           
-          const response = await sheets.spreadsheets.values.get({
+          const response2 = await sheets.spreadsheets.values.append({
             spreadsheetId: process.env.DATABASE_ID,
-            range: `Consumernew!A${3+parseInt(value)}:J1001`, // sheet name
+            range: 'Consumernew!M3',
+            valueInputOption: 'USER_ENTERED',
+            requestBody: {
+              values: [[`${value}`]],
+            },
           });
-          
-          const rows = response.data.values;
-          
-          if (rows.length) {
-            return res.status(200).json(rows.map((row)=>({
-                client_name:row[0],
-                client_email:row[1],
-                client_address:row[2],
-                recipient_name:row[3],
-                recipient_email:row[4],
-                recipient_address:row[5],
-                amount:row[6],
-                order_id:row[7],
-                reason:row[8],
-                action:row[9]
-            })));
-            // return res.status(200).json({message:"hello"});
-          }
+
+          const response3 = await sheets.spreadsheets.values.get({
+            spreadsheetId: process.env.DATABASE_ID,
+            range: 'Consumernew!M3', // sheet name
+          });
+          console.log(response3.data.values[0][0])
+
+          res.status(201).json(value);
       
     }catch(e){
         console.log(e)
         res.status(500).send(e)
     }
 
+  }
+  res.status(200).json({ message: 'Only POST allowed!' });
 }
 
 export default handler;
