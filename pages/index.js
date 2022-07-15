@@ -15,17 +15,17 @@ export default function Home() {
 
       <Container style={{'height':'100vh','textAlign':'center','paddingTop':'30vh'}}>
         <Row>
-          <Col style={{'padding':'5vh'}}>
+          <Col style={{'marginBottom':'5vh'}}>
             <Link href='/legalNoticeTemplate'>
-              <Button variant="success" style={{'fontWeight':'bolder','fontSize':'24px','padding':'3vh'}}>
-                  Consumer Legal Notice Template
+              <Button variant="success" style={{'fontWeight':'bolder','fontSize':'24px','padding':'6vh'}}>
+                  Consumer Legal<br/>Notice Template
               </Button>
             </Link>
           </Col>
-          <Col style={{'padding':'5vh'}}>
+          <Col>
             <Link href='/legalNoticeTemplate'>
-              <Button variant="success" style={{'fontWeight':'bolder','fontSize':'24px','padding':'3vh'}}>
-                  Insurance Legal Notice Template
+              <Button variant="success" style={{'fontWeight':'bolder','fontSize':'24px','padding':'6vh'}}>
+                  Insurance Legal<br/>Notice Template
               </Button>
             </Link>
           </Col>
